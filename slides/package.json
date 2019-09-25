@@ -1,0 +1,18 @@
+{
+  "name": "azure-pipelines-demo-slides",
+  "version": "1.0.0",
+  "description": "Slides for azure-pipelines-demo talk",
+  "main": "index.js",
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcus Lyons <marcus.a.lyons@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mdx-deck": "^3.0.13"
+  },
+  "dependencies": {
+    "@mdx-deck/themes": "^3.0.8"
+  }
+}
