@@ -38,6 +38,37 @@ stages:
       workingDirectory: "./demo-app"
       displayName: "Run tests"
 
+- stage: Build
+  displayName: 'Build Gatsby Site'
+
+  jobs:
+  - job: Build
+    pool: 'ubuntu-16.04'
+    displayName: "Run Gatsby Build"
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: "10.x"
+      displayName: "Use Node.js 10"
+
+    - script: yarn --no-progress --frozen-lockfile
+      workingDirectory: "./demo-app"
+      displayName: "Install dependencies"
+
     - script: yarn run build
       workingDirectory: "./demo-app"
       displayName: "Build Gatsby App"
+
+    - task: CopyFiles@2
+      inputs:
+        sourceFolder: "$(System.DefaultWorkingDirectory)/demo-app"
+        contents: |
+          public/**/*
+        targetFolder: "$(Build.ArtifactStagingDirectory)"
+        overWrite: true
+      displayName: "Copying built static files"
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        ArtifactName: 'el-tigre'
