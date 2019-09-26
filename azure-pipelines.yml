@@ -79,3 +79,27 @@ stages:
     - task: PublishBuildArtifacts@1
       inputs:
         ArtifactName: 'el-tigre'
+
+- stage: Deploy
+  displayName: 'Deploy to Azure Storage'
+
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: 'ubuntu-16.04'
+      displayName: "Deploy Gatsby Site"
+
+    steps:
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          buildType: current
+          artifactName: 'el-tigre'
+          downloadPath: $(System.ArtifactsDirectory)/el-tigre
+
+      - task: AzureFileCopy@3
+        inputs:
+          SourcePath: $(System.ArtifactsDirectory)/el-tigre
+          azureSubscription: $(azureSub)
+          destination: azureBlob
+          storage:
+          cleanTargetBeforeCopy: true
