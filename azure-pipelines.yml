@@ -13,24 +13,20 @@ stages:
   - job: Install
     strategy:
       matrix:
-        linux10:
+        linux:
           imageName: 'ubuntu-16.04'
-          vNum: '10.x'
-        linux12:
-          imageName: 'ubuntu-16.04'
-          vNum: '12.x'
-        mac10:
-          imageName: 'macos-10.13'
-          vNum: '10.x'
-        mac12:
-          imageName: 'macos-10.13'
-          vNum: '12.x'
-        win10:
+        mac:
+          imageName: 'macOS-10.13'
+        macLatest:
+          imageName: 'macOS-latest'
+        win2019:
+          imageName: 'windows-latest'
+        win2016:
           imageName: 'vs2017-win2016'
-          vNum: '10.x'
-        win12:
-          imageName: 'vs2017-win2016'
-          vNum: '12.x'
+        win2012:
+          imageName: 'vs2015-win2012r2'
+        win1803:
+          imageName: 'win1803'
 
     pool:
       vmImage: $(imageName)
@@ -39,8 +35,8 @@ stages:
     steps:
     - task: NodeTool@0
       inputs:
-        versionSpec: $(vNum)
-      displayName: "Use Node.js $(vNum)"
+        versionSpec: "10.x"
+      displayName: "Use Node.js 10"
 
     - script: yarn --no-progress --frozen-lockfile
       workingDirectory: "./demo-app"
