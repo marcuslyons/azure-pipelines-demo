@@ -22,17 +22,22 @@ stages:
 
     pool:
       vmImage: $(imageName)
-    displayName: "Install Node.js"
+    displayName: "Install Dependencies and Run Tests"
 
     steps:
     - task: NodeTool@0
       inputs:
         versionSpec: "10.x"
-      displayName: "Install Node.js"
+      displayName: "Use Node.js 10"
 
-    - script: |
-        yarn
-        yarn test
-        yarn run build
+    - script: yarn --no-progress --frozen-lockfile
       workingDirectory: "./demo-app"
-      displayName: "yarn install, test, and build"
+      displayName: "Install dependencies"
+
+    - script: yarn test
+      workingDirectory: "./demo-app"
+      displayName: "Run tests"
+
+    - script: yarn run build
+      workingDirectory: "./demo-app"
+      displayName: "Build Gatsby App"
