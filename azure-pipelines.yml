@@ -86,7 +86,7 @@ stages:
   jobs:
   - job: Deploy
     pool:
-      vmImage: 'ubuntu-16.04'
+      vmImage: 'windows-latest'
       displayName: "Deploy Gatsby Site"
 
     steps:
