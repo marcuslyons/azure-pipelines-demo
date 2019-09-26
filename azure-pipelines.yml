@@ -98,7 +98,7 @@ stages:
 
       - task: AzureFileCopy@3
         inputs:
-          SourcePath: '$(System.ArtifactsDirectory)/el-tigre/public/'
+          SourcePath: '$(System.ArtifactsDirectory)/el-tigre/el-tigre/public'
           azureSubscription: 'Visual Studio Enterprise(2ffad064-f255-40d2-b72e-d70ccefefc1a)'
           Destination: 'AzureBlob'
           storage: 'mlusweltigre'
