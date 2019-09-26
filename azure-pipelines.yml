@@ -98,8 +98,8 @@ stages:
 
       - task: AzureFileCopy@3
         inputs:
-          SourcePath: $(System.ArtifactsDirectory)/el-tigre
-          azureSubscription: $(azureSub)
-          destination: azureBlob
-          storage:
-          cleanTargetBeforeCopy: true
+          SourcePath: '$(System.ArtifactsDirectory)/el-tigre'
+          azureSubscription: 'Visual Studio Enterprise(2ffad064-f255-40d2-b72e-d70ccefefc1a)'
+          Destination: 'AzureBlob'
+          storage: 'mlusweltigre'
+          ContainerName: '$web'
