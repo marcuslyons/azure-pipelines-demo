@@ -17,6 +17,7 @@ steps:
 
   - script: |
       yarn
+      yarn test
       yarn run build
     workingDirectory: "./demo-app"
     displayName: "yarn install and build"
